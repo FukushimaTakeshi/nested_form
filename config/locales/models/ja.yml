@@ -9,6 +9,7 @@ ja:
         tel: 電話番号
         email: メールアドレス
         free_form: 備考欄
+        free_texts: 質問
     errors:
       format: '%{attribute}を入力'
       models:

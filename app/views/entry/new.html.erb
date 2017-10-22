@@ -7,7 +7,7 @@
     <div class="alert alert-danger" role="alert">
       <strong>入力内容にエラーがあります</strong>
       <ul>
-        <% @entry.errors.each do |attr, msg| %>
+        <% @entry.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -32,9 +32,8 @@
       <td><%= f.text_field :email %></td>
     </tr>
     <% @free_form.text.present? %>
-      <%= f.fields_for :free_form do |text| %>
+      <%= fields_for @free_form do |text| %>
         <tr>
-          <th><%= @free_form.text[text.index][:comment] %></th>
           <td><%= text.text_area :free_texts, size: "50x5" %></td>
         </tr>
       <% end %>
