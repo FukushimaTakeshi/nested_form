@@ -1,0 +1,22 @@
+ja:
+  activemodel:
+    models:
+      entry: 登録
+    attributes:
+      entry:
+        name: 名前
+        name_katakana: 名前(カナ)
+        tel: 電話番号
+        email: メールアドレス
+        free_form: 備考欄
+        free_texts: 質問
+    errors:
+      format: '%{attribute}%{message}'
+      models:
+        entry:
+          blank: を入力して下さい。
+          invalid: は不正です。
+          too_long: は%{count}文字以内で入力して下さい。
+          not_a_number: は半角数字で入力して下さい。
+          not_a_katakana: はカタナカで入力して下さい。
+          not_a_jisx0208: は不正な文字が含まれています。

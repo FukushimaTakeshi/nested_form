@@ -11,8 +11,9 @@ module SendForm
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     config.i18n.default_locale = :ja
-    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       # raise

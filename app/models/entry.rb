@@ -1,20 +1,21 @@
 class Entry
   include ActiveModel::Model
+  include ValidatorHelper
 
   attr_accessor :name, :name_katakana, :tel, :email, :free_form, :free_texts
   # コーリバックさせたいアクションを指定
   define_model_callbacks :save
   before_save { self.valid? }
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 20 }, string_type: true
   VALID_KATAKANA_REGEX = /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/
   validates :name_katakana, presence: true,
-                            format: { with: VALID_KATAKANA_REGEX },
+                            format: { with: VALID_KATAKANA_REGEX, message: :not_a_katakana },
                             length: { maximum: 20 }
   validates :tel, presence: true, numericality: true, length: { maximum: 15 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :email, presence: true, length: { maximum: 255 },
-                    format: { with: VALID_EMAIL_REGEX }
+  validates :email, presence: true, length: { maximum: 255 }, email: true
+
   # validate :validate_forms
   #
   # def validate_forms
