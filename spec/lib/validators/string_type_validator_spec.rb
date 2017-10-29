@@ -43,6 +43,5 @@ require 'rails_helper'
         is_expected.to eq(text: [I18n.t("activemodel.errors.models.dummy_model.attributes.text.not_a_jisx0208")])
       end
     end
-
   end
 # end

@@ -3,6 +3,7 @@ module Validators
     REGEXP = /\A#{"[　-╂亜-腕弌-熙]".encode("SHIFT_JIS")}+\z/
 
     def validate_each(record, attribute, value)
+      return if value.blank?
       record.errors.add(attribute, :not_a_jisx0208) unless jisx0208_include?(value)
     end
 
