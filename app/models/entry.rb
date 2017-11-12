@@ -2,7 +2,7 @@ class Entry
   include ActiveModel::Model
   include ValidatorHelper
 
-  attr_accessor :name, :name_katakana, :tel, :email, :free_form, :free_texts
+  attr_accessor :name, :name_katakana, :tel, :email
   # コーリバックさせたいアクションを指定
   define_model_callbacks :save
   before_save { self.valid? }
@@ -15,6 +15,16 @@ class Entry
   validates :tel, presence: true, numericality: true, length: { maximum: 15 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 }, email: true
+
+  def initialize(texts, params={})
+    texts.each_with_index do |val, index|
+      class_eval do
+        attr_accessor :"free_text_#{index}"
+        validates :"free_text_#{index}", length: { maximum: 5 }
+      end
+    end
+    super(params)
+  end
 
   # validate :validate_forms
   #

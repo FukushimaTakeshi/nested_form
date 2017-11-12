@@ -7,8 +7,10 @@
     <div class="alert alert-danger" role="alert">
       <strong>入力内容にエラーがあります</strong>
       <ul>
-        <% @entry.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+        <% sort_messages(@entry.errors.messages).each do |msg_key| %>
+          <% @entry.errors.full_messages_for(msg_key).each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -27,16 +29,17 @@
       <th><%= f.label :tel %></th>
       <td><%= f.text_field :tel %></td>
     </tr>
+    <% @free_form.text.present? %>
+      <% @free_form.text.each_with_index do |_, index| %>
+        <tr>
+          <th><%= @free_form.text[index][:comment] %></th>
+          <td><%= f.text_area :"free_text_#{index}", size: "50x5" %></td>
+        </tr>
+      <% end %>
     <tr>
       <th><%= f.label :email %></th>
       <td><%= f.text_field :email %></td>
     </tr>
-    <% @free_form.text.present? %>
-      <%= fields_for @free_form do |text| %>
-        <tr>
-          <td><%= text.text_area :free_texts, size: "50x5" %></td>
-        </tr>
-      <% end %>
   </table>
   <%= f.submit '確認', class: 'btn btn-primary' %>
 <% end %>

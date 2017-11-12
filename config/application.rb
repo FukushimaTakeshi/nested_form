@@ -15,15 +15,15 @@ module SendForm
 
     config.i18n.default_locale = :ja
 
-    config.action_view.field_error_proc = Proc.new do |html_tag, instance|
-      # raise
-      if instance.kind_of?(ActionView::Helpers::Tags::Label)
-        # skip when label
-        html_tag.html_safe
-      else
-        # raise
-      Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select').add_class('is-error').to_html.html_safe
-      end
-    end
+    # config.action_view.field_error_proc = Proc.new do |html_tag, instance|
+    #   # raise
+    #   if instance.kind_of?(ActionView::Helpers::Tags::Label)
+    #     # skip when label
+    #     html_tag.html_safe
+    #   else
+    #     # raise
+    #     Nokogiri::HTML.fragment(html_tag).search('input', 'textarea', 'select').add_class('is-error').to_html.html_safe
+    #   end
+    # end
   end
 end
