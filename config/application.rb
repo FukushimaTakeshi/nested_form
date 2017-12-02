@@ -12,5 +12,6 @@ module SendForm
     config.load_defaults 5.1
 
     config.i18n.default_locale = :ja
+    config.action_controller.per_form_csrf_tokens = true
   end
 end

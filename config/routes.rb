@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'inquiry/new', to: 'inquiry#new'
-  post 'inquiry/confirm', to: 'inquiry#confirm'
-  post 'inquiry/create', to: 'inquiry#create'
+  get 'inquiry/:id/new', to: 'inquiry#new', as: 'inquiry_new'
+  post 'inquiry/:id/confirm', to: 'inquiry#confirm', as: 'inquiry_confirm'
+  post 'inquiry/:id/create', to: 'inquiry#create', as: 'inquiry_create'
 end
