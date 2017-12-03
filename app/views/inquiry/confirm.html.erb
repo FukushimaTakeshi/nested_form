@@ -1,4 +1,5 @@
 <%= form_for @inquiry, url: inquiry_create_path do |f| %>
+  <%= transaction_token_tags %>
   <table>
     <tr>
       <th><%= f.label :name %></th>
